@@ -3,9 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@app/*": ["./src/config/*"],
+      "@voice-ux/*": ["./src/voice-ux/*"]
     }
   },
   "include": [

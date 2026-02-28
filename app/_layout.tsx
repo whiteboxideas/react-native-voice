@@ -1,23 +1,27 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import React, { useMemo } from 'react';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { SettingsProvider, useSettings } from '@app/context/SettingsContext';
+import { createAppCommands } from '@app/commands/appCommands';
+import { CommandRegistry } from '@voice-ux/core/CommandRegistry';
+import { VoiceProvider } from '@voice-ux/components/VoiceProvider';
+import { VoiceButton } from '@voice-ux/components/VoiceButton';
+import { VoiceOverlay } from '@voice-ux/components/VoiceOverlay';
+import { WhisperSTTProvider } from '@voice-ux/providers/stt/WhisperSTTProvider';
+import { OpenAILLMProvider } from '@voice-ux/providers/llm/OpenAILLMProvider';
+import { ExpoSpeechTTSProvider } from '@voice-ux/providers/tts/ExpoSpeechTTSProvider';
+import type { PipelineConfig } from '@voice-ux/types/pipeline';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -25,7 +29,6 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -36,22 +39,48 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  if (!loaded) return null;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <SettingsProvider>
+      <RootLayoutInner />
+    </SettingsProvider>
+  );
+}
+
+function RootLayoutInner() {
+  const settings = useSettings();
+
+  const registry = useMemo(() => {
+    const reg = new CommandRegistry();
+    reg.registerAll(createAppCommands(settings));
+    return reg;
+  }, [settings]);
+
+  const config = useMemo<PipelineConfig>(
+    () => ({
+      sttProvider: new WhisperSTTProvider(),
+      llmProvider: new OpenAILLMProvider(),
+      ttsProvider: new ExpoSpeechTTSProvider(),
+      ttsEnabled: true,
+    }),
+    [],
+  );
+
+  return (
+    <VoiceProvider config={config} registry={registry}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
-    </ThemeProvider>
+      <VoiceOverlay
+        backgroundColor={settings.colors.surface}
+        textColor={settings.colors.text}
+        accentColor={settings.colors.primary}
+      />
+      <VoiceButton
+        color={settings.colors.primary}
+        activeColor={settings.colors.danger}
+      />
+    </VoiceProvider>
   );
 }
