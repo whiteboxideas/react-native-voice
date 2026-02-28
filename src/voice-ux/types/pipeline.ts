@@ -11,7 +11,7 @@ export interface LLMResponse {
   message?: string;
 }
 
-export type PipelineStage = 'idle' | 'recording' | 'transcribing' | 'understanding' | 'executing' | 'speaking' | 'done' | 'error';
+export type PipelineStage = 'idle' | 'recording' | 'reviewing' | 'transcribing' | 'understanding' | 'executing' | 'speaking' | 'done' | 'error';
 
 export interface PipelineConfig {
   sttProvider: STTProvider;

@@ -6,6 +6,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useVoice } from './VoiceProvider';
+import { useAudioPlayback } from '../hooks/useAudioPlayback';
 
 interface VoiceOverlayProps {
   backgroundColor?: string;
@@ -16,6 +17,7 @@ interface VoiceOverlayProps {
 const STAGE_LABELS: Record<string, string> = {
   idle: '',
   recording: 'Listening...',
+  reviewing: 'Review recording',
   transcribing: 'Transcribing...',
   understanding: 'Understanding...',
   executing: 'Executing...',
@@ -24,12 +26,20 @@ const STAGE_LABELS: Record<string, string> = {
   error: 'Error',
 };
 
+function formatTime(seconds: number): string {
+  const s = Math.max(0, Math.floor(seconds));
+  const m = Math.floor(s / 60);
+  const rem = s % 60;
+  return `${m}:${rem.toString().padStart(2, '0')}`;
+}
+
 export function VoiceOverlay({
   backgroundColor = '#1E1E1E',
   textColor = '#F0F0F0',
   accentColor = '#6AB0FF',
 }: VoiceOverlayProps) {
-  const { stage, lastResult, error, isListening, isProcessing } = useVoice();
+  const { stage, lastResult, error, isListening, isProcessing, recordingUri, confirmRecording, reRecord } = useVoice();
+  const playback = useAudioPlayback(stage === 'reviewing' ? recordingUri : null);
 
   const visible = stage !== 'idle';
   const translateY = useSharedValue(300);
@@ -56,6 +66,59 @@ export function VoiceOverlay({
         </Text>
       </View>
 
+      {/* Review playback controls */}
+      {stage === 'reviewing' && (
+        <View style={styles.reviewSection}>
+          <View style={styles.playbackRow}>
+            <Pressable
+              style={[styles.playPauseBtn, { borderColor: accentColor }]}
+              onPress={() => (playback.isPlaying ? playback.pause() : playback.play())}
+            >
+              {playback.isPlaying ? (
+                <View style={styles.pauseIcon}>
+                  <View style={[styles.pauseBar, { backgroundColor: accentColor }]} />
+                  <View style={[styles.pauseBar, { backgroundColor: accentColor }]} />
+                </View>
+              ) : (
+                <View style={[styles.playIcon, { borderLeftColor: accentColor }]} />
+              )}
+            </Pressable>
+            <View style={styles.progressContainer}>
+              <View style={[styles.progressTrack, { backgroundColor: textColor, opacity: 0.2 }]}>
+                <View
+                  style={[
+                    styles.progressFill,
+                    {
+                      backgroundColor: accentColor,
+                      width: playback.duration > 0
+                        ? `${(playback.currentTime / playback.duration) * 100}%`
+                        : '0%',
+                    },
+                  ]}
+                />
+              </View>
+              <Text style={[styles.timeText, { color: textColor, opacity: 0.6 }]}>
+                {formatTime(playback.currentTime)} / {formatTime(playback.duration)}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.reviewButtons}>
+            <Pressable
+              style={[styles.reviewBtn, { borderColor: textColor, borderWidth: 1 }]}
+              onPress={reRecord}
+            >
+              <Text style={[styles.reviewBtnText, { color: textColor }]}>Re-record</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.reviewBtn, { backgroundColor: accentColor }]}
+              onPress={confirmRecording}
+            >
+              <Text style={[styles.reviewBtnText, { color: '#fff' }]}>Send</Text>
+            </Pressable>
+          </View>
+        </View>
+      )}
+
       {/* Transcript */}
       {lastResult?.transcript ? (
         <View style={styles.section}>
@@ -70,6 +133,7 @@ export function VoiceOverlay({
       {lastResult?.commandResults?.map((r, i) => (
         <Text
           key={i}
+          selectable={!r.success}
           style={[styles.resultText, { color: r.success ? '#66BB6A' : '#EF5350' }]}
         >
           {r.message}
@@ -78,7 +142,7 @@ export function VoiceOverlay({
 
       {/* Error */}
       {error && (
-        <Text style={[styles.resultText, { color: '#EF5350' }]}>{error}</Text>
+        <Text selectable style={[styles.resultText, { color: '#EF5350' }]}>{error}</Text>
       )}
 
       {/* Dismiss */}
@@ -145,5 +209,71 @@ const styles = StyleSheet.create({
   },
   dismissText: {
     fontSize: 13,
+  },
+  reviewSection: {
+    marginBottom: 12,
+  },
+  playbackRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  playPauseBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  playIcon: {
+    width: 0,
+    height: 0,
+    borderTopWidth: 8,
+    borderBottomWidth: 8,
+    borderLeftWidth: 14,
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+    marginLeft: 3,
+  },
+  pauseIcon: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  pauseBar: {
+    width: 4,
+    height: 14,
+    borderRadius: 1,
+  },
+  progressContainer: {
+    flex: 1,
+  },
+  progressTrack: {
+    height: 4,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    borderRadius: 2,
+  },
+  timeText: {
+    fontSize: 11,
+    marginTop: 4,
+  },
+  reviewButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  reviewBtn: {
+    flex: 1,
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  reviewBtnText: {
+    fontSize: 15,
+    fontWeight: '600',
   },
 });

@@ -14,9 +14,13 @@ export class WhisperSTTProvider implements STTProvider {
       throw new Error('Audio file not found.');
     }
 
-    // Use the File blob API (SDK 55+) for FormData upload
+    // RN's FormData requires { uri, type, name } — Blob/File objects don't carry MIME type
     const formData = new FormData();
-    formData.append('file', file as unknown as Blob, 'recording.m4a');
+    formData.append('file', {
+      uri: audioUri,
+      type: 'audio/m4a',
+      name: 'recording.m4a',
+    } as unknown as Blob);
     formData.append('model', 'whisper-1');
 
     const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {

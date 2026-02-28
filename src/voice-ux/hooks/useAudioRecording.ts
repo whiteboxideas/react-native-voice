@@ -54,6 +54,18 @@ export function useAudioRecording() {
       const uri = recorder.uri;
       setState('idle');
 
+      // DEBUG: check recording file size
+      if (uri) {
+        try {
+          const response = await fetch(uri);
+          const blob = await response.blob();
+          console.log('[AudioRecording] file size:', blob.size, 'bytes, uri:', uri);
+          console.log('[AudioRecording] duration:', recorderState.durationMillis, 'ms');
+        } catch (e) {
+          console.log('[AudioRecording] could not read file:', e);
+        }
+      }
+
       if (!uri) {
         setError('No recording URI available.');
         return null;

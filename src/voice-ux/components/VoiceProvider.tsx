@@ -6,6 +6,9 @@ import { useVoiceCommand } from '../hooks/useVoiceCommand';
 interface VoiceContextValue {
   startListening: () => Promise<void>;
   stopListening: () => Promise<void>;
+  confirmRecording: () => Promise<void>;
+  reRecord: () => Promise<void>;
+  recordingUri: string | null;
   isListening: boolean;
   isProcessing: boolean;
   stage: PipelineStage;

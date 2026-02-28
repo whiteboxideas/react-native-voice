@@ -15,6 +15,7 @@ export function useVoiceCommand({ config, registry }: UseVoiceCommandOptions) {
   const [stage, setStage] = useState<PipelineStage>('idle');
   const [lastResult, setLastResult] = useState<PipelineResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [recordingUri, setRecordingUri] = useState<string | null>(null);
   const orchestratorRef = useRef<PipelineOrchestrator | null>(null);
 
   if (!orchestratorRef.current) {
@@ -36,11 +37,16 @@ export function useVoiceCommand({ config, registry }: UseVoiceCommandOptions) {
       return;
     }
 
+    setRecordingUri(result.uri);
+    setStage('reviewing');
+  }, [stopRecording]);
+
+  const processRecording = useCallback(async (uri: string) => {
     setIsProcessing(true);
     try {
       orchestratorRef.current!.updateConfig(config);
       const pipelineResult = await orchestratorRef.current!.process(
-        result.uri,
+        uri,
         (newStage, detail) => {
           setStage(newStage);
           if (newStage === 'error' && detail) setError(detail);
@@ -56,11 +62,28 @@ export function useVoiceCommand({ config, registry }: UseVoiceCommandOptions) {
     } finally {
       setIsProcessing(false);
     }
-  }, [stopRecording, config]);
+  }, [config]);
+
+  const confirmRecording = useCallback(async () => {
+    if (!recordingUri) return;
+    await processRecording(recordingUri);
+    setRecordingUri(null);
+  }, [recordingUri, processRecording]);
+
+  const reRecord = useCallback(async () => {
+    setRecordingUri(null);
+    setError(null);
+    setLastResult(null);
+    setStage('recording');
+    await startRecording();
+  }, [startRecording]);
 
   return {
     startListening,
     stopListening,
+    confirmRecording,
+    reRecord,
+    recordingUri,
     isListening: isRecording,
     isProcessing,
     stage,

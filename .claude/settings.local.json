@@ -12,7 +12,8 @@
       "WebFetch(domain:docs.expo.dev)",
       "Bash(npm uninstall:*)",
       "Bash(ls:*)",
-      "Bash(pod install:*)"
+      "Bash(pod install:*)",
+      "Bash(grep:*)"
     ]
   }
 }
