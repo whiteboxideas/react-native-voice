@@ -13,7 +13,11 @@
       "Bash(npm uninstall:*)",
       "Bash(ls:*)",
       "Bash(pod install:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:app.unpkg.com)",
+      "WebFetch(domain:unpkg.com)",
+      "Bash(rm:*)"
     ]
   }
 }
