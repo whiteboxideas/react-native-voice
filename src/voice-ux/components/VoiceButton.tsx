@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, Pressable, View } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { RecordingIndicator } from './RecordingIndicator';
@@ -19,25 +19,47 @@ export function VoiceButton({
   bottom = 90,
   right = 20,
 }: VoiceButtonProps) {
-  const { isListening, isProcessing, startListening, stopListening } = useVoice();
+  const { isListening, stage, startListening, stopListening } = useVoice();
+  // Ref so onPressOut can call stopListening even if React state hasn't updated yet
+  const recordingStarted = useRef(false);
 
-  const handlePress = async () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    if (isListening) {
-      await stopListening();
-    } else {
-      await startListening();
+  const canStart = stage === 'idle' || stage === 'done' || stage === 'error';
+
+  const handlePressIn = async () => {
+    console.log('[VoiceButton] onPressIn — stage:', stage, 'canStart:', canStart, 'isListening:', isListening);
+    if (!canStart) {
+      console.log('[VoiceButton] onPressIn ignored — cannot start in stage:', stage);
+      return;
     }
+    recordingStarted.current = true;
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    console.log('[VoiceButton] calling startListening...');
+    await startListening();
+    console.log('[VoiceButton] startListening resolved');
+  };
+
+  const handlePressOut = async () => {
+    console.log('[VoiceButton] onPressOut — stage:', stage, 'isListening:', isListening, 'recordingStarted.current:', recordingStarted.current);
+    if (!recordingStarted.current) {
+      console.log('[VoiceButton] onPressOut ignored — recording was never started');
+      return;
+    }
+    recordingStarted.current = false;
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('[VoiceButton] calling stopListening...');
+    await stopListening();
+    console.log('[VoiceButton] stopListening resolved');
   };
 
   const currentColor = isListening ? activeColor : color;
-  const disabled = isProcessing;
+  const disabled = !canStart && stage !== 'recording';
 
   return (
     <View style={[styles.container, { bottom, right }]}>
       <RecordingIndicator isRecording={isListening} color={activeColor} size={size + 20} />
       <Pressable
-        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
         disabled={disabled}
         style={({ pressed }) => [
           styles.button,

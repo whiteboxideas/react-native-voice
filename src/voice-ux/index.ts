@@ -24,7 +24,7 @@ export { useVoiceCommand } from './hooks/useVoiceCommand';
 export { VoiceProvider, useVoice } from './components/VoiceProvider';
 export { VoiceButton } from './components/VoiceButton';
 export { RecordingIndicator } from './components/RecordingIndicator';
-export { VoiceOverlay } from './components/VoiceOverlay';
+export { VoiceBubble } from './components/VoiceBubble';
 
 // Utils
 export { getApiKey, hasApiKey } from './utils/apiKeyManager';

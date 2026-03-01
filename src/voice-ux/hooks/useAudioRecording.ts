@@ -4,15 +4,18 @@ import type { RecordingState, AudioRecordingResult } from '../types/audio';
 
 export function useAudioRecording() {
   const recordingRef = useRef<Audio.Recording | null>(null);
+  const recordingStartedAt = useRef<number | null>(null);
   const [state, setState] = useState<RecordingState>('idle');
   const [error, setError] = useState<string | null>(null);
 
   const startRecording = useCallback(async (): Promise<void> => {
     try {
+      console.log('[useAudioRecording] startRecording — requesting permission');
       setError(null);
       setState('requesting_permission');
 
       const permission = await Audio.requestPermissionsAsync();
+      console.log('[useAudioRecording] permission granted:', permission.granted);
       if (!permission.granted) {
         setError('Microphone permission denied.');
         setState('idle');
@@ -29,7 +32,10 @@ export function useAudioRecording() {
       await recording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
       await recording.startAsync();
       recordingRef.current = recording;
+      recordingStartedAt.current = Date.now();
+      console.log('[useAudioRecording] recording started');
     } catch (err) {
+      console.log('[useAudioRecording] startRecording error:', err);
       setError(err instanceof Error ? err.message : 'Failed to start recording');
       setState('idle');
     }
@@ -37,11 +43,15 @@ export function useAudioRecording() {
 
   const stopRecording = useCallback(async (): Promise<AudioRecordingResult | null> => {
     const recording = recordingRef.current;
+    console.log('[useAudioRecording] stopRecording — recording ref:', recording ? 'exists' : 'null');
     if (!recording) return null;
 
     try {
       setState('stopping');
-      const status = await recording.stopAndUnloadAsync();
+      await recording.stopAndUnloadAsync();
+      const durationMs = recordingStartedAt.current ? Date.now() - recordingStartedAt.current : 0;
+      recordingStartedAt.current = null;
+      console.log('[useAudioRecording] stopped — durationMs (wall clock):', durationMs);
       recordingRef.current = null;
 
       await Audio.setAudioModeAsync({
@@ -49,6 +59,7 @@ export function useAudioRecording() {
       });
 
       const uri = recording.getURI();
+      console.log('[useAudioRecording] uri:', uri);
       setState('idle');
 
       if (!uri) {
@@ -58,9 +69,10 @@ export function useAudioRecording() {
 
       return {
         uri,
-        durationMs: status.durationMillis ?? 0,
+        durationMs,
       };
     } catch (err) {
+      console.log('[useAudioRecording] stopRecording error:', err);
       setError(err instanceof Error ? err.message : 'Failed to stop recording');
       setState('idle');
       return null;

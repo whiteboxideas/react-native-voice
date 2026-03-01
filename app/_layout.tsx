@@ -10,7 +10,7 @@ import { createAppCommands } from '@app/commands/appCommands';
 import { CommandRegistry } from '@voice-ux/core/CommandRegistry';
 import { VoiceProvider } from '@voice-ux/components/VoiceProvider';
 import { VoiceButton } from '@voice-ux/components/VoiceButton';
-import { VoiceOverlay } from '@voice-ux/components/VoiceOverlay';
+import { VoiceBubble } from '@voice-ux/components/VoiceBubble';
 import { WhisperSTTProvider } from '@voice-ux/providers/stt/WhisperSTTProvider';
 import { OpenAILLMProvider } from '@voice-ux/providers/llm/OpenAILLMProvider';
 import { ExpoSpeechTTSProvider } from '@voice-ux/providers/tts/ExpoSpeechTTSProvider';
@@ -72,7 +72,7 @@ function RootLayoutInner() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
-      <VoiceOverlay
+      <VoiceBubble
         backgroundColor={settings.colors.surface}
         textColor={settings.colors.text}
         accentColor={settings.colors.primary}

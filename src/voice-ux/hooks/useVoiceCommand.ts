@@ -22,67 +22,80 @@ export function useVoiceCommand({ config, registry }: UseVoiceCommandOptions) {
     orchestratorRef.current = new PipelineOrchestrator(config, registry);
   }
 
-  const startListening = useCallback(async () => {
-    setError(null);
-    setLastResult(null);
-    setStage('recording');
-    await startRecording();
-  }, [startRecording]);
-
-  const stopListening = useCallback(async () => {
-    const result = await stopRecording();
-    if (!result) {
-      setStage('idle');
-      setError('No recording captured.');
-      return;
-    }
-
-    setRecordingUri(result.uri);
-    setStage('reviewing');
-  }, [stopRecording]);
-
   const processRecording = useCallback(async (uri: string) => {
+    console.log('[useVoiceCommand] processRecording — uri:', uri);
     setIsProcessing(true);
     try {
       orchestratorRef.current!.updateConfig(config);
       const pipelineResult = await orchestratorRef.current!.process(
         uri,
         (newStage, detail) => {
+          console.log('[useVoiceCommand] pipeline stage:', newStage, detail ?? '');
           setStage(newStage);
           if (newStage === 'error' && detail) setError(detail);
         },
       );
+      console.log('[useVoiceCommand] pipeline result:', pipelineResult);
       setLastResult(pipelineResult);
       if (!pipelineResult.success && pipelineResult.error) {
         setError(pipelineResult.error);
+        // Keep recordingUri on error so user can replay
+      } else {
+        setRecordingUri(null);
       }
     } catch (err) {
+      console.log('[useVoiceCommand] pipeline threw:', err);
       setError(err instanceof Error ? err.message : 'Pipeline error');
       setStage('error');
+      // Keep recordingUri on error so user can replay
     } finally {
       setIsProcessing(false);
     }
   }, [config]);
 
-  const confirmRecording = useCallback(async () => {
-    if (!recordingUri) return;
-    await processRecording(recordingUri);
-    setRecordingUri(null);
-  }, [recordingUri, processRecording]);
-
-  const reRecord = useCallback(async () => {
-    setRecordingUri(null);
+  const startListening = useCallback(async () => {
+    console.log('[useVoiceCommand] startListening');
     setError(null);
     setLastResult(null);
+    setRecordingUri(null);
     setStage('recording');
     await startRecording();
+    console.log('[useVoiceCommand] startRecording done');
   }, [startRecording]);
+
+  const stopListening = useCallback(async () => {
+    console.log('[useVoiceCommand] stopListening — calling stopRecording...');
+    const result = await stopRecording();
+    console.log('[useVoiceCommand] stopRecording result:', result);
+    if (!result) {
+      console.log('[useVoiceCommand] no result — aborting');
+      setStage('idle');
+      setError('No recording captured.');
+      return;
+    }
+
+    console.log('[useVoiceCommand] durationMs:', result.durationMs);
+    if (result.durationMs < 500) {
+      console.log('[useVoiceCommand] too short — discarding');
+      setStage('idle');
+      return;
+    }
+
+    setRecordingUri(result.uri);
+    await processRecording(result.uri);
+  }, [stopRecording, processRecording]);
+
+  const dismiss = useCallback(() => {
+    setStage('idle');
+    setError(null);
+    setLastResult(null);
+    setRecordingUri(null);
+  }, []);
 
   return {
     startListening,
     stopListening,
-    confirmRecording,
-    reRecord,
+    dismiss,
     recordingUri,
     isListening: isRecording,
     isProcessing,
