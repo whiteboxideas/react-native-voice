@@ -20,7 +20,8 @@
       "Bash(rm:*)",
       "Bash(git mv:*)",
       "Bash(yarn install:*)",
-      "Bash(yarn build:*)"
+      "Bash(yarn build:*)",
+      "Bash(find:*)"
     ]
   }
 }

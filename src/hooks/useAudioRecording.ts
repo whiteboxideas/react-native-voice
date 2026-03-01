@@ -1,4 +1,4 @@
-import { Audio } from 'expo-av';
+import { useAudioRecorder, RecordingPresets, AudioModule } from 'expo-audio';
 import { useCallback, useRef, useState } from 'react';
 import type { AudioRecordingResult, RecordingState } from '../types/audio';
 
@@ -7,7 +7,7 @@ const log = (...args: unknown[]) => {
 };
 
 export function useAudioRecording() {
-  const recordingRef = useRef<Audio.Recording | null>(null);
+  const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
   const recordingStartedAt = useRef<number | null>(null);
   const [state, setState] = useState<RecordingState>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +18,7 @@ export function useAudioRecording() {
       setError(null);
       setState('requesting_permission');
 
-      const permission = await Audio.requestPermissionsAsync();
+      const permission = await AudioModule.requestRecordingPermissionsAsync();
       log('[useAudioRecording] permission granted:', permission.granted);
       if (!permission.granted) {
         setError('Microphone permission denied.');
@@ -26,16 +26,14 @@ export function useAudioRecording() {
         return;
       }
 
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: true,
-        playsInSilentModeIOS: true,
+      await AudioModule.setAudioModeAsync({
+        allowsRecording: true,
+        playsInSilentMode: true,
       });
 
       setState('recording');
-      const recording = new Audio.Recording();
-      await recording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-      await recording.startAsync();
-      recordingRef.current = recording;
+      await recorder.prepareToRecordAsync();
+      recorder.record();
       recordingStartedAt.current = Date.now();
       log('[useAudioRecording] recording started');
     } catch (err) {
@@ -43,26 +41,24 @@ export function useAudioRecording() {
       setError(err instanceof Error ? err.message : 'Failed to start recording');
       setState('idle');
     }
-  }, []);
+  }, [recorder]);
 
   const stopRecording = useCallback(async (): Promise<AudioRecordingResult | null> => {
-    const recording = recordingRef.current;
-    log('[useAudioRecording] stopRecording — recording ref:', recording ? 'exists' : 'null');
-    if (!recording) return null;
+    log('[useAudioRecording] stopRecording — recorder id:', recorder.id);
+    if (state !== 'recording') return null;
 
     try {
       setState('stopping');
-      await recording.stopAndUnloadAsync();
+      recorder.stop();
       const durationMs = recordingStartedAt.current ? Date.now() - recordingStartedAt.current : 0;
       recordingStartedAt.current = null;
       log('[useAudioRecording] stopped — durationMs (wall clock):', durationMs);
-      recordingRef.current = null;
 
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
+      await AudioModule.setAudioModeAsync({
+        allowsRecording: false,
       });
 
-      const uri = recording.getURI();
+      const uri = recorder.uri;
       log('[useAudioRecording] uri:', uri);
       setState('idle');
 
@@ -81,7 +77,7 @@ export function useAudioRecording() {
       setState('idle');
       return null;
     }
-  }, []);
+  }, [recorder, state]);
 
   return {
     recordingState: state,
