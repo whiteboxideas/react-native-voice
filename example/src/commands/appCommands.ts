@@ -1,4 +1,4 @@
-import type { CommandDefinition } from 'react-native-voice-tools';
+import type { CommandDefinition } from 'react-native-voice';
 import type { FontSizeKey } from '@app/theme/typography';
 import { FontSizeOptions } from '@app/theme/typography';
 import { router } from 'expo-router';

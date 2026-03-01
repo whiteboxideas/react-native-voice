@@ -4299,7 +4299,7 @@ react-native-screens@~4.16.0:
     react-native-is-edge-to-edge "^1.2.1"
     warn-once "^0.1.0"
 
-"react-native-voice-tools@link:..":
+"react-native-voice@link:..":
   version "0.0.0"
   uid ""
 

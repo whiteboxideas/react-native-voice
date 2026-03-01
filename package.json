@@ -1,5 +1,5 @@
 {
-  "name": "react-native-voice-tools",
+  "name": "react-native-voice",
   "version": "0.1.0",
   "description": "A modular voice command library for React Native apps — STT, LLM tool-calling, TTS pipeline with pluggable providers.",
   "main": "dist/index.js",

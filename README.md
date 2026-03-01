@@ -1,4 +1,4 @@
-# react-native-voice-tools
+# react-native-voice
 
 A modular voice command library for React Native apps — STT, LLM tool-calling, TTS pipeline with pluggable providers.
 
@@ -37,9 +37,9 @@ Pipeline stages: idle → recording → transcribing → understanding → execu
 ## Installation
 
 ```bash
-npm install react-native-voice-tools
+npm install react-native-voice
 # or
-yarn add react-native-voice-tools
+yarn add react-native-voice
 ```
 
 ### Peer dependencies (required)
@@ -84,7 +84,7 @@ npx expo install expo-speech
 ### 1. Define your commands
 
 ```tsx
-import type { CommandDefinition } from 'react-native-voice-tools';
+import type { CommandDefinition } from 'react-native-voice';
 
 const commands: CommandDefinition[] = [
   {
@@ -131,9 +131,9 @@ const commands: CommandDefinition[] = [
 import {
   CommandRegistry,
   createExpoApiKeyResolver,
-} from 'react-native-voice-tools';
-import { WhisperSTTProvider, OpenAILLMProvider } from 'react-native-voice-tools/providers/openai';
-import { ExpoSpeechTTSProvider } from 'react-native-voice-tools/providers/expo-speech';
+} from 'react-native-voice';
+import { WhisperSTTProvider, OpenAILLMProvider } from 'react-native-voice/providers/openai';
+import { ExpoSpeechTTSProvider } from 'react-native-voice/providers/expo-speech';
 
 const resolveApiKey = createExpoApiKeyResolver();
 
@@ -151,7 +151,7 @@ const pipelineConfig = {
 ### 3. Wrap your app with VoiceProvider
 
 ```tsx
-import { VoiceProvider } from 'react-native-voice-tools';
+import { VoiceProvider } from 'react-native-voice';
 
 export default function App() {
   return (
@@ -165,7 +165,7 @@ export default function App() {
 ### 4. Add the voice UI
 
 ```tsx
-import { VoiceButton, VoiceBubble } from 'react-native-voice-tools/ui';
+import { VoiceButton, VoiceBubble } from 'react-native-voice/ui';
 
 function YourApp() {
   return (
@@ -186,11 +186,11 @@ Press and hold the mic button to record, release to process. The bubble shows pi
 
 | Import path | Contents |
 |---|---|
-| `react-native-voice-tools` | Core classes, hooks, types, `VoiceProvider`, `createExpoApiKeyResolver` |
-| `react-native-voice-tools/ui` | `VoiceButton`, `VoiceBubble`, `RecordingIndicator` |
-| `react-native-voice-tools/providers/openai` | `WhisperSTTProvider`, `OpenAILLMProvider` |
-| `react-native-voice-tools/providers/anthropic` | `AnthropicLLMProvider` |
-| `react-native-voice-tools/providers/expo-speech` | `ExpoSpeechTTSProvider` |
+| `react-native-voice` | Core classes, hooks, types, `VoiceProvider`, `createExpoApiKeyResolver` |
+| `react-native-voice/ui` | `VoiceButton`, `VoiceBubble`, `RecordingIndicator` |
+| `react-native-voice/providers/openai` | `WhisperSTTProvider`, `OpenAILLMProvider` |
+| `react-native-voice/providers/anthropic` | `AnthropicLLMProvider` |
+| `react-native-voice/providers/expo-speech` | `ExpoSpeechTTSProvider` |
 
 ---
 
@@ -341,7 +341,7 @@ const {
 Floating action button with press-and-hold to record. Uses `expo-haptics` for feedback and renders a built-in mic icon.
 
 ```tsx
-import { VoiceButton } from 'react-native-voice-tools/ui';
+import { VoiceButton } from 'react-native-voice/ui';
 
 <VoiceButton
   size={60}              // Button diameter (default: 60)
@@ -359,7 +359,7 @@ Must be used inside a `VoiceProvider`. Automatically disables during pipeline pr
 Animated status overlay that shows pipeline stage, transcript, command results, errors, and audio playback controls on error.
 
 ```tsx
-import { VoiceBubble } from 'react-native-voice-tools/ui';
+import { VoiceBubble } from 'react-native-voice/ui';
 
 <VoiceBubble
   backgroundColor="#1E1E1E"  // Bubble background (default: '#1E1E1E')
@@ -383,7 +383,7 @@ Requires `react-native-reanimated`.
 Animated pulsing ring shown around the voice button during recording.
 
 ```tsx
-import { RecordingIndicator } from 'react-native-voice-tools/ui';
+import { RecordingIndicator } from 'react-native-voice/ui';
 
 <RecordingIndicator
   isRecording={true}     // Controls animation (default: false)
@@ -405,7 +405,7 @@ All providers accept an `ApiKeyResolver` for key management. Keys are resolved l
 OpenAI Whisper speech-to-text. Sends audio as `audio/m4a` to the Whisper API.
 
 ```ts
-import { WhisperSTTProvider } from 'react-native-voice-tools/providers/openai';
+import { WhisperSTTProvider } from 'react-native-voice/providers/openai';
 
 const stt = new WhisperSTTProvider(resolveApiKey);
 const transcript = await stt.transcribe(audioUri);
@@ -418,7 +418,7 @@ Resolves the `'openai'` provider key.
 OpenAI chat completions with JSON response mode.
 
 ```ts
-import { OpenAILLMProvider } from 'react-native-voice-tools/providers/openai';
+import { OpenAILLMProvider } from 'react-native-voice/providers/openai';
 
 const llm = new OpenAILLMProvider(resolveApiKey);              // defaults to gpt-4o-mini
 const llm = new OpenAILLMProvider(resolveApiKey, 'gpt-4o');    // specify model
@@ -433,7 +433,7 @@ Resolves the `'openai'` provider key.
 Anthropic Claude chat completions.
 
 ```ts
-import { AnthropicLLMProvider } from 'react-native-voice-tools/providers/anthropic';
+import { AnthropicLLMProvider } from 'react-native-voice/providers/anthropic';
 
 const llm = new AnthropicLLMProvider(resolveApiKey);                      // defaults to claude-sonnet-4-6
 const llm = new AnthropicLLMProvider(resolveApiKey, 'claude-haiku-4-5');  // specify model
@@ -448,7 +448,7 @@ Resolves the `'anthropic'` provider key.
 Text-to-speech using `expo-speech`. No API key needed.
 
 ```ts
-import { ExpoSpeechTTSProvider } from 'react-native-voice-tools/providers/expo-speech';
+import { ExpoSpeechTTSProvider } from 'react-native-voice/providers/expo-speech';
 
 const tts = new ExpoSpeechTTSProvider();
 await tts.speak('Hello!');
@@ -467,7 +467,7 @@ Factory that returns an `ApiKeyResolver` function. Checks two sources in order:
 2. **Environment variable** — looks for `EXPO_PUBLIC_OPENAI_API_KEY` or `EXPO_PUBLIC_ANTHROPIC_API_KEY` via `expo-constants`
 
 ```ts
-import { createExpoApiKeyResolver } from 'react-native-voice-tools';
+import { createExpoApiKeyResolver } from 'react-native-voice';
 
 const resolveApiKey = createExpoApiKeyResolver();
 
@@ -661,7 +661,7 @@ import type {
   RecordingState,
   AudioRecordingConfig,
   AudioRecordingResult,
-} from 'react-native-voice-tools';
+} from 'react-native-voice';
 ```
 
 ## Example App

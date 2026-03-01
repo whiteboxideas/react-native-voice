@@ -12,10 +12,10 @@ import {
   VoiceProvider,
   createExpoApiKeyResolver,
   type PipelineConfig,
-} from 'react-native-voice-tools';
-import { VoiceButton, VoiceBubble } from 'react-native-voice-tools/ui';
-import { WhisperSTTProvider, OpenAILLMProvider } from 'react-native-voice-tools/providers/openai';
-import { ExpoSpeechTTSProvider } from 'react-native-voice-tools/providers/expo-speech';
+} from 'react-native-voice';
+import { VoiceButton, VoiceBubble } from 'react-native-voice/ui';
+import { WhisperSTTProvider, OpenAILLMProvider } from 'react-native-voice/providers/openai';
+import { ExpoSpeechTTSProvider } from 'react-native-voice/providers/expo-speech';
 
 export { ErrorBoundary } from 'expo-router';
 
