@@ -1,0 +1,1323 @@
+{
+  "primary": {
+    "imports": {
+      "src/providers-anthropic.ts": [
+        "src/providers/llm/AnthropicLLMProvider.ts"
+      ],
+      "src/index.ts": [
+        "src/core/CommandRegistry.ts",
+        "src/core/CommandExecutor.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "src/core/PromptBuilder.ts",
+        "src/hooks/useAudioRecording.ts",
+        "src/hooks/useAudioPlayback.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "src/components/VoiceProvider.tsx",
+        "src/utils/expoApiKeyResolver.ts"
+      ],
+      "src/providers-openai.ts": [
+        "src/providers/stt/WhisperSTTProvider.ts",
+        "src/providers/llm/OpenAILLMProvider.ts"
+      ],
+      "src/ui.ts": [
+        "src/components/VoiceButton.tsx",
+        "src/components/VoiceBubble.tsx",
+        "src/components/RecordingIndicator.tsx"
+      ],
+      "src/providers-expo-speech.ts": [
+        "src/providers/tts/ExpoSpeechTTSProvider.ts"
+      ],
+      "src/hooks/useAudioRecording.ts": [
+        "src/types/audio.ts"
+      ],
+      "src/hooks/useAudioPlayback.ts": [],
+      "src/hooks/useVoiceCommand.ts": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "src/hooks/useAudioRecording.ts"
+      ],
+      "src/components/VoiceButton.tsx": [
+        "src/components/RecordingIndicator.tsx",
+        "src/components/VoiceProvider.tsx"
+      ],
+      "src/components/RecordingIndicator.tsx": [],
+      "src/components/VoiceProvider.tsx": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts",
+        "src/hooks/useVoiceCommand.ts"
+      ],
+      "src/components/VoiceBubble.tsx": [
+        "src/components/VoiceProvider.tsx",
+        "src/hooks/useAudioPlayback.ts"
+      ],
+      "src/utils/expoApiKeyResolver.ts": [
+        "src/types/providers.ts"
+      ],
+      "src/providers/stt/WhisperSTTProvider.ts": [
+        "src/types/providers.ts"
+      ],
+      "src/providers/tts/ExpoSpeechTTSProvider.ts": [
+        "src/types/providers.ts"
+      ],
+      "src/providers/llm/OpenAILLMProvider.ts": [
+        "src/types/providers.ts"
+      ],
+      "src/providers/llm/AnthropicLLMProvider.ts": [
+        "src/types/providers.ts"
+      ],
+      "src/core/PromptBuilder.ts": [
+        "src/core/CommandRegistry.ts"
+      ],
+      "src/core/CommandRegistry.ts": [
+        "src/types/commands.ts"
+      ],
+      "src/core/PipelineOrchestrator.ts": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts",
+        "src/core/CommandExecutor.ts",
+        "src/core/PromptBuilder.ts"
+      ],
+      "src/core/CommandExecutor.ts": [
+        "src/core/CommandRegistry.ts",
+        "src/types/pipeline.ts",
+        "src/types/commands.ts"
+      ],
+      "src/types/providers.ts": [],
+      "src/types/pipeline.ts": [
+        "src/types/providers.ts",
+        "src/types/commands.ts"
+      ],
+      "src/types/audio.ts": [],
+      "src/types/commands.ts": [],
+      "example/src/commands/appCommands.ts": [
+        "src/index.ts",
+        "example/src/theme/typography.ts"
+      ],
+      "example/src/theme/typography.ts": [],
+      "example/src/theme/colors.ts": [],
+      "example/src/context/SettingsContext.tsx": [
+        "example/src/theme/colors.ts",
+        "example/src/theme/typography.ts"
+      ],
+      "example/expo-env.d.ts": [],
+      "example/metro.config.js": [],
+      "example/components/useClientOnlyValue.web.ts": [],
+      "example/components/useColorScheme.ts": [],
+      "example/components/useClientOnlyValue.ts": [],
+      "example/components/StyledText.tsx": [
+        "example/components/Themed.tsx"
+      ],
+      "example/components/useColorScheme.web.ts": [],
+      "example/components/Themed.tsx": [
+        "example/components/useColorScheme.ts",
+        "example/constants/Colors.ts"
+      ],
+      "example/components/ExternalLink.tsx": [
+        "example/.expo/types/router.d.ts"
+      ],
+      "example/app/_layout.tsx": [
+        "example/.expo/types/router.d.ts",
+        "example/src/context/SettingsContext.tsx",
+        "example/src/commands/appCommands.ts",
+        "src/ui.ts",
+        "src/providers-openai.ts",
+        "src/providers-expo-speech.ts"
+      ],
+      "example/app/+not-found.tsx": [
+        "example/.expo/types/router.d.ts"
+      ],
+      "example/app/(tabs)/about.tsx": [
+        "example/src/context/SettingsContext.tsx"
+      ],
+      "example/app/(tabs)/_layout.tsx": [
+        "example/.expo/types/router.d.ts",
+        "example/src/context/SettingsContext.tsx"
+      ],
+      "example/app/(tabs)/profile.tsx": [
+        "example/src/context/SettingsContext.tsx"
+      ],
+      "example/app/(tabs)/index.tsx": [
+        "example/src/context/SettingsContext.tsx"
+      ],
+      "example/app/(tabs)/settings.tsx": [
+        "example/src/context/SettingsContext.tsx",
+        "example/src/theme/typography.ts"
+      ],
+      "dist/providers-openai.d.ts": [
+        "src/providers/stt/WhisperSTTProvider.ts",
+        "src/providers/llm/OpenAILLMProvider.ts"
+      ],
+      "dist/index.d.ts": [
+        "src/core/CommandRegistry.ts",
+        "src/core/CommandExecutor.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "src/core/PromptBuilder.ts",
+        "src/hooks/useAudioRecording.ts",
+        "src/hooks/useAudioPlayback.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "src/components/VoiceProvider.tsx",
+        "src/utils/expoApiKeyResolver.ts"
+      ],
+      "example/constants/Colors.ts": [],
+      "dist/providers-anthropic.js": [
+        "src/providers/llm/AnthropicLLMProvider.ts"
+      ],
+      "dist/core/PipelineOrchestrator.js": [
+        "src/core/CommandExecutor.ts",
+        "src/core/PromptBuilder.ts"
+      ],
+      "dist/core/PromptBuilder.d.ts": [
+        "src/core/CommandRegistry.ts"
+      ],
+      "dist/core/PipelineOrchestrator.d.ts": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts"
+      ],
+      "dist/core/CommandExecutor.js": [],
+      "dist/core/CommandExecutor.d.ts": [
+        "src/core/CommandRegistry.ts",
+        "src/types/pipeline.ts",
+        "src/types/commands.ts"
+      ],
+      "dist/core/CommandRegistry.d.ts": [
+        "src/types/commands.ts"
+      ],
+      "dist/core/PromptBuilder.js": [],
+      "dist/core/CommandRegistry.js": [],
+      "dist/types/pipeline.js": [],
+      "dist/types/pipeline.d.ts": [
+        "src/types/providers.ts",
+        "src/types/commands.ts"
+      ],
+      "dist/types/providers.js": [],
+      "dist/types/audio.d.ts": [],
+      "dist/types/commands.js": [],
+      "dist/types/audio.js": [],
+      "dist/types/commands.d.ts": [],
+      "dist/types/providers.d.ts": [],
+      "dist/ui.js": [
+        "src/components/VoiceButton.tsx",
+        "src/components/VoiceBubble.tsx",
+        "src/components/RecordingIndicator.tsx"
+      ],
+      "dist/providers-expo-speech.js": [
+        "src/providers/tts/ExpoSpeechTTSProvider.ts"
+      ],
+      "dist/utils/expoApiKeyResolver.d.ts": [
+        "src/types/providers.ts"
+      ],
+      "dist/utils/expoApiKeyResolver.js": [],
+      "dist/index.js": [
+        "src/core/CommandRegistry.ts",
+        "src/core/CommandExecutor.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "src/core/PromptBuilder.ts",
+        "src/hooks/useAudioRecording.ts",
+        "src/hooks/useAudioPlayback.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "src/components/VoiceProvider.tsx",
+        "src/utils/expoApiKeyResolver.ts"
+      ],
+      "dist/providers-openai.js": [
+        "src/providers/stt/WhisperSTTProvider.ts",
+        "src/providers/llm/OpenAILLMProvider.ts"
+      ],
+      "dist/ui.d.ts": [
+        "src/components/VoiceButton.tsx",
+        "src/components/VoiceBubble.tsx",
+        "src/components/RecordingIndicator.tsx"
+      ],
+      "dist/components/RecordingIndicator.js": [],
+      "dist/components/VoiceProvider.js": [
+        "src/hooks/useVoiceCommand.ts"
+      ],
+      "dist/components/RecordingIndicator.d.ts": [],
+      "dist/components/VoiceButton.js": [
+        "src/components/RecordingIndicator.tsx",
+        "src/components/VoiceProvider.tsx"
+      ],
+      "dist/components/VoiceButton.d.ts": [],
+      "dist/components/VoiceBubble.js": [
+        "src/components/VoiceProvider.tsx",
+        "src/hooks/useAudioPlayback.ts"
+      ],
+      "dist/components/VoiceProvider.d.ts": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts"
+      ],
+      "dist/components/VoiceBubble.d.ts": [],
+      "dist/providers-expo-speech.d.ts": [
+        "src/providers/tts/ExpoSpeechTTSProvider.ts"
+      ],
+      "dist/providers/llm/OpenAILLMProvider.js": [],
+      "dist/providers/llm/OpenAILLMProvider.d.ts": [
+        "src/types/providers.ts"
+      ],
+      "dist/providers/llm/AnthropicLLMProvider.js": [],
+      "dist/providers/llm/AnthropicLLMProvider.d.ts": [
+        "src/types/providers.ts"
+      ],
+      "dist/providers-anthropic.d.ts": [
+        "src/providers/llm/AnthropicLLMProvider.ts"
+      ],
+      "dist/providers/tts/ExpoSpeechTTSProvider.js": [],
+      "dist/providers/tts/ExpoSpeechTTSProvider.d.ts": [
+        "src/types/providers.ts"
+      ],
+      "dist/hooks/useVoiceCommand.d.ts": [
+        "src/types/pipeline.ts",
+        "src/core/CommandRegistry.ts"
+      ],
+      "dist/hooks/useAudioRecording.d.ts": [
+        "src/types/audio.ts"
+      ],
+      "dist/hooks/useVoiceCommand.js": [
+        "src/core/PipelineOrchestrator.ts",
+        "src/hooks/useAudioRecording.ts"
+      ],
+      "dist/hooks/useAudioRecording.js": [],
+      "dist/hooks/useAudioPlayback.js": [],
+      "dist/hooks/useAudioPlayback.d.ts": [],
+      "dist/providers/stt/WhisperSTTProvider.d.ts": [
+        "src/types/providers.ts"
+      ],
+      "dist/providers/stt/WhisperSTTProvider.js": [],
+      "example/.expo/types/router.d.ts": []
+    },
+    "usages": {
+      "src/providers/llm/AnthropicLLMProvider.ts": [
+        "src/providers-anthropic.ts",
+        "dist/providers-anthropic.js",
+        "dist/providers-anthropic.d.ts"
+      ],
+      "src/providers-anthropic.ts": [],
+      "src/core/CommandRegistry.ts": [
+        "src/index.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "src/components/VoiceProvider.tsx",
+        "src/core/PromptBuilder.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "src/core/CommandExecutor.ts",
+        "dist/index.d.ts",
+        "dist/core/PromptBuilder.d.ts",
+        "dist/core/PipelineOrchestrator.d.ts",
+        "dist/core/CommandExecutor.d.ts",
+        "dist/index.js",
+        "dist/components/VoiceProvider.d.ts",
+        "dist/hooks/useVoiceCommand.d.ts"
+      ],
+      "src/core/CommandExecutor.ts": [
+        "src/index.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "dist/index.d.ts",
+        "dist/core/PipelineOrchestrator.js",
+        "dist/index.js"
+      ],
+      "src/core/PipelineOrchestrator.ts": [
+        "src/index.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "dist/index.d.ts",
+        "dist/index.js",
+        "dist/hooks/useVoiceCommand.js"
+      ],
+      "src/core/PromptBuilder.ts": [
+        "src/index.ts",
+        "src/core/PipelineOrchestrator.ts",
+        "dist/index.d.ts",
+        "dist/core/PipelineOrchestrator.js",
+        "dist/index.js"
+      ],
+      "src/hooks/useAudioRecording.ts": [
+        "src/index.ts",
+        "src/hooks/useVoiceCommand.ts",
+        "dist/index.d.ts",
+        "dist/index.js",
+        "dist/hooks/useVoiceCommand.js"
+      ],
+      "src/hooks/useAudioPlayback.ts": [
+        "src/index.ts",
+        "src/components/VoiceBubble.tsx",
+        "dist/index.d.ts",
+        "dist/index.js",
+        "dist/components/VoiceBubble.js"
+      ],
+      "src/hooks/useVoiceCommand.ts": [
+        "src/index.ts",
+        "src/components/VoiceProvider.tsx",
+        "dist/index.d.ts",
+        "dist/index.js",
+        "dist/components/VoiceProvider.js"
+      ],
+      "src/components/VoiceProvider.tsx": [
+        "src/index.ts",
+        "src/components/VoiceButton.tsx",
+        "src/components/VoiceBubble.tsx",
+        "dist/index.d.ts",
+        "dist/index.js",
+        "dist/components/VoiceButton.js",
+        "dist/components/VoiceBubble.js"
+      ],
+      "src/utils/expoApiKeyResolver.ts": [
+        "src/index.ts",
+        "dist/index.d.ts",
+        "dist/index.js"
+      ],
+      "src/index.ts": [
+        "example/src/commands/appCommands.ts"
+      ],
+      "src/providers/stt/WhisperSTTProvider.ts": [
+        "src/providers-openai.ts",
+        "dist/providers-openai.d.ts",
+        "dist/providers-openai.js"
+      ],
+      "src/providers/llm/OpenAILLMProvider.ts": [
+        "src/providers-openai.ts",
+        "dist/providers-openai.d.ts",
+        "dist/providers-openai.js"
+      ],
+      "src/providers-openai.ts": [
+        "example/app/_layout.tsx"
+      ],
+      "src/components/VoiceButton.tsx": [
+        "src/ui.ts",
+        "dist/ui.js",
+        "dist/ui.d.ts"
+      ],
+      "src/components/VoiceBubble.tsx": [
+        "src/ui.ts",
+        "dist/ui.js",
+        "dist/ui.d.ts"
+      ],
+      "src/components/RecordingIndicator.tsx": [
+        "src/ui.ts",
+        "src/components/VoiceButton.tsx",
+        "dist/ui.js",
+        "dist/ui.d.ts",
+        "dist/components/VoiceButton.js"
+      ],
+      "src/ui.ts": [
+        "example/app/_layout.tsx"
+      ],
+      "src/providers/tts/ExpoSpeechTTSProvider.ts": [
+        "src/providers-expo-speech.ts",
+        "dist/providers-expo-speech.js",
+        "dist/providers-expo-speech.d.ts"
+      ],
+      "src/providers-expo-speech.ts": [
+        "example/app/_layout.tsx"
+      ],
+      "src/types/audio.ts": [
+        "src/hooks/useAudioRecording.ts",
+        "dist/hooks/useAudioRecording.d.ts"
+      ],
+      "src/types/pipeline.ts": [
+        "src/hooks/useVoiceCommand.ts",
+        "src/components/VoiceProvider.tsx",
+        "src/core/PipelineOrchestrator.ts",
+        "src/core/CommandExecutor.ts",
+        "dist/core/PipelineOrchestrator.d.ts",
+        "dist/core/CommandExecutor.d.ts",
+        "dist/components/VoiceProvider.d.ts",
+        "dist/hooks/useVoiceCommand.d.ts"
+      ],
+      "src/types/providers.ts": [
+        "src/utils/expoApiKeyResolver.ts",
+        "src/providers/stt/WhisperSTTProvider.ts",
+        "src/providers/tts/ExpoSpeechTTSProvider.ts",
+        "src/providers/llm/OpenAILLMProvider.ts",
+        "src/providers/llm/AnthropicLLMProvider.ts",
+        "src/types/pipeline.ts",
+        "dist/types/pipeline.d.ts",
+        "dist/utils/expoApiKeyResolver.d.ts",
+        "dist/providers/llm/OpenAILLMProvider.d.ts",
+        "dist/providers/llm/AnthropicLLMProvider.d.ts",
+        "dist/providers/tts/ExpoSpeechTTSProvider.d.ts",
+        "dist/providers/stt/WhisperSTTProvider.d.ts"
+      ],
+      "src/types/commands.ts": [
+        "src/core/CommandRegistry.ts",
+        "src/core/CommandExecutor.ts",
+        "src/types/pipeline.ts",
+        "dist/core/CommandExecutor.d.ts",
+        "dist/core/CommandRegistry.d.ts",
+        "dist/types/pipeline.d.ts"
+      ],
+      "example/src/theme/typography.ts": [
+        "example/src/commands/appCommands.ts",
+        "example/src/context/SettingsContext.tsx",
+        "example/app/(tabs)/settings.tsx"
+      ],
+      "example/src/commands/appCommands.ts": [
+        "example/app/_layout.tsx"
+      ],
+      "example/src/theme/colors.ts": [
+        "example/src/context/SettingsContext.tsx"
+      ],
+      "example/src/context/SettingsContext.tsx": [
+        "example/app/_layout.tsx",
+        "example/app/(tabs)/about.tsx",
+        "example/app/(tabs)/_layout.tsx",
+        "example/app/(tabs)/profile.tsx",
+        "example/app/(tabs)/index.tsx",
+        "example/app/(tabs)/settings.tsx"
+      ],
+      "example/expo-env.d.ts": [],
+      "example/metro.config.js": [],
+      "example/components/useClientOnlyValue.web.ts": [],
+      "example/components/useColorScheme.ts": [
+        "example/components/Themed.tsx"
+      ],
+      "example/components/useClientOnlyValue.ts": [],
+      "example/components/Themed.tsx": [
+        "example/components/StyledText.tsx"
+      ],
+      "example/components/StyledText.tsx": [],
+      "example/components/useColorScheme.web.ts": [],
+      "example/constants/Colors.ts": [
+        "example/components/Themed.tsx"
+      ],
+      "example/.expo/types/router.d.ts": [
+        "example/components/ExternalLink.tsx",
+        "example/app/_layout.tsx",
+        "example/app/+not-found.tsx",
+        "example/app/(tabs)/_layout.tsx"
+      ],
+      "example/components/ExternalLink.tsx": [],
+      "example/app/_layout.tsx": [],
+      "example/app/+not-found.tsx": [],
+      "example/app/(tabs)/about.tsx": [],
+      "example/app/(tabs)/_layout.tsx": [],
+      "example/app/(tabs)/profile.tsx": [],
+      "example/app/(tabs)/index.tsx": [],
+      "example/app/(tabs)/settings.tsx": [],
+      "dist/providers-openai.d.ts": [],
+      "dist/index.d.ts": [],
+      "dist/providers-anthropic.js": [],
+      "dist/core/PipelineOrchestrator.js": [],
+      "dist/core/PromptBuilder.d.ts": [],
+      "dist/core/PipelineOrchestrator.d.ts": [],
+      "dist/core/CommandExecutor.js": [],
+      "dist/core/CommandExecutor.d.ts": [],
+      "dist/core/CommandRegistry.d.ts": [],
+      "dist/core/PromptBuilder.js": [],
+      "dist/core/CommandRegistry.js": [],
+      "dist/types/pipeline.js": [],
+      "dist/types/pipeline.d.ts": [],
+      "dist/types/providers.js": [],
+      "dist/types/audio.d.ts": [],
+      "dist/types/commands.js": [],
+      "dist/types/audio.js": [],
+      "dist/types/commands.d.ts": [],
+      "dist/types/providers.d.ts": [],
+      "dist/ui.js": [],
+      "dist/providers-expo-speech.js": [],
+      "dist/utils/expoApiKeyResolver.d.ts": [],
+      "dist/utils/expoApiKeyResolver.js": [],
+      "dist/index.js": [],
+      "dist/providers-openai.js": [],
+      "dist/ui.d.ts": [],
+      "dist/components/RecordingIndicator.js": [],
+      "dist/components/VoiceProvider.js": [],
+      "dist/components/RecordingIndicator.d.ts": [],
+      "dist/components/VoiceButton.js": [],
+      "dist/components/VoiceButton.d.ts": [],
+      "dist/components/VoiceBubble.js": [],
+      "dist/components/VoiceProvider.d.ts": [],
+      "dist/components/VoiceBubble.d.ts": [],
+      "dist/providers-expo-speech.d.ts": [],
+      "dist/providers/llm/OpenAILLMProvider.js": [],
+      "dist/providers/llm/OpenAILLMProvider.d.ts": [],
+      "dist/providers/llm/AnthropicLLMProvider.js": [],
+      "dist/providers/llm/AnthropicLLMProvider.d.ts": [],
+      "dist/providers-anthropic.d.ts": [],
+      "dist/providers/tts/ExpoSpeechTTSProvider.js": [],
+      "dist/providers/tts/ExpoSpeechTTSProvider.d.ts": [],
+      "dist/hooks/useVoiceCommand.d.ts": [],
+      "dist/hooks/useAudioRecording.d.ts": [],
+      "dist/hooks/useVoiceCommand.js": [],
+      "dist/hooks/useAudioRecording.js": [],
+      "dist/hooks/useAudioPlayback.js": [],
+      "dist/hooks/useAudioPlayback.d.ts": [],
+      "dist/providers/stt/WhisperSTTProvider.d.ts": [],
+      "dist/providers/stt/WhisperSTTProvider.js": []
+    },
+    "metrics": {
+      "src/providers-anthropic.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "src/index.ts": {
+        "importDepth": 2,
+        "directUsageCount": 1,
+        "usageDepth": 2,
+        "folderCount": 1,
+        "importCount": 9,
+        "lineCount": 23
+      },
+      "src/providers-openai.ts": {
+        "importDepth": 1,
+        "directUsageCount": 1,
+        "usageDepth": 1,
+        "folderCount": 1,
+        "importCount": 2,
+        "lineCount": 3
+      },
+      "src/ui.ts": {
+        "importDepth": 1,
+        "directUsageCount": 1,
+        "usageDepth": 1,
+        "folderCount": 1,
+        "importCount": 3,
+        "lineCount": 4
+      },
+      "src/providers-expo-speech.ts": {
+        "importDepth": 1,
+        "directUsageCount": 1,
+        "usageDepth": 1,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "src/hooks/useAudioRecording.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 5,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 94
+      },
+      "src/hooks/useAudioPlayback.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 3,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 87
+      },
+      "src/hooks/useVoiceCommand.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 4,
+        "folderCount": 2,
+        "importCount": 4,
+        "lineCount": 111
+      },
+      "src/components/VoiceButton.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 137
+      },
+      "src/components/RecordingIndicator.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 3,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 74
+      },
+      "src/components/VoiceProvider.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 7,
+        "usageDepth": 3,
+        "folderCount": 2,
+        "importCount": 3,
+        "lineCount": 43
+      },
+      "src/components/VoiceBubble.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 318
+      },
+      "src/utils/expoApiKeyResolver.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 3,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 42
+      },
+      "src/providers/stt/WhisperSTTProvider.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 50
+      },
+      "src/providers/tts/ExpoSpeechTTSProvider.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 20
+      },
+      "src/providers/llm/OpenAILLMProvider.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 45
+      },
+      "src/providers/llm/AnthropicLLMProvider.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 1,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 45
+      },
+      "src/core/PromptBuilder.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 6,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 30
+      },
+      "src/core/CommandRegistry.ts": {
+        "importDepth": 1,
+        "directUsageCount": 13,
+        "usageDepth": 7,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 48
+      },
+      "src/core/PipelineOrchestrator.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 5,
+        "folderCount": 2,
+        "importCount": 4,
+        "lineCount": 101
+      },
+      "src/core/CommandExecutor.ts": {
+        "importDepth": 1,
+        "directUsageCount": 5,
+        "usageDepth": 6,
+        "folderCount": 2,
+        "importCount": 3,
+        "lineCount": 58
+      },
+      "src/types/providers.ts": {
+        "importDepth": 1,
+        "directUsageCount": 12,
+        "usageDepth": 8,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 15
+      },
+      "src/types/pipeline.ts": {
+        "importDepth": 1,
+        "directUsageCount": 8,
+        "usageDepth": 7,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 39
+      },
+      "src/types/audio.ts": {
+        "importDepth": 1,
+        "directUsageCount": 2,
+        "usageDepth": 6,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 13
+      },
+      "src/types/commands.ts": {
+        "importDepth": 1,
+        "directUsageCount": 6,
+        "usageDepth": 8,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 23
+      },
+      "example/src/commands/appCommands.ts": {
+        "importDepth": 1,
+        "directUsageCount": 1,
+        "usageDepth": 1,
+        "folderCount": 3,
+        "importCount": 2,
+        "lineCount": 119
+      },
+      "example/src/theme/typography.ts": {
+        "importDepth": 1,
+        "directUsageCount": 3,
+        "usageDepth": 2,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 11
+      },
+      "example/src/theme/colors.ts": {
+        "importDepth": 2,
+        "directUsageCount": 1,
+        "usageDepth": 2,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 38
+      },
+      "example/src/context/SettingsContext.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 6,
+        "usageDepth": 1,
+        "folderCount": 3,
+        "importCount": 2,
+        "lineCount": 111
+      },
+      "example/expo-env.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 0,
+        "lineCount": 3
+      },
+      "example/metro.config.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 0,
+        "lineCount": 52
+      },
+      "example/components/useClientOnlyValue.web.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 13
+      },
+      "example/components/useColorScheme.ts": {
+        "importDepth": 2,
+        "directUsageCount": 1,
+        "usageDepth": 2,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 7
+      },
+      "example/components/useClientOnlyValue.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 5
+      },
+      "example/components/StyledText.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 6
+      },
+      "example/components/useColorScheme.web.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 9
+      },
+      "example/components/Themed.tsx": {
+        "importDepth": 1,
+        "directUsageCount": 1,
+        "usageDepth": 1,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 46
+      },
+      "example/components/ExternalLink.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 25
+      },
+      "example/app/_layout.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 6,
+        "lineCount": 90
+      },
+      "example/app/+not-found.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 40
+      },
+      "example/app/(tabs)/about.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 73
+      },
+      "example/app/(tabs)/_layout.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 2,
+        "lineCount": 61
+      },
+      "example/app/(tabs)/profile.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 68
+      },
+      "example/app/(tabs)/index.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 73
+      },
+      "example/app/(tabs)/settings.tsx": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 2,
+        "lineCount": 171
+      },
+      "dist/providers-openai.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 2,
+        "lineCount": 3
+      },
+      "dist/index.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 9,
+        "lineCount": 14
+      },
+      "example/constants/Colors.ts": {
+        "importDepth": 2,
+        "directUsageCount": 1,
+        "usageDepth": 2,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 20
+      },
+      "dist/providers-anthropic.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "dist/core/PipelineOrchestrator.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 87
+      },
+      "dist/core/PromptBuilder.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 5
+      },
+      "dist/core/PipelineOrchestrator.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 12
+      },
+      "dist/core/CommandExecutor.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 51
+      },
+      "dist/core/CommandExecutor.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 3,
+        "lineCount": 10
+      },
+      "dist/core/CommandRegistry.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 11
+      },
+      "dist/core/PromptBuilder.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 27
+      },
+      "dist/core/CommandRegistry.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 43
+      },
+      "dist/types/pipeline.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 2
+      },
+      "dist/types/pipeline.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 29
+      },
+      "dist/types/providers.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 2
+      },
+      "dist/types/audio.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 11
+      },
+      "dist/types/commands.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 2
+      },
+      "dist/types/audio.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 2
+      },
+      "dist/types/commands.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 21
+      },
+      "dist/types/providers.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 12
+      },
+      "dist/ui.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 3,
+        "lineCount": 4
+      },
+      "dist/providers-expo-speech.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "dist/utils/expoApiKeyResolver.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 10
+      },
+      "dist/utils/expoApiKeyResolver.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 38
+      },
+      "dist/index.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 9,
+        "lineCount": 14
+      },
+      "dist/providers-openai.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 2,
+        "lineCount": 3
+      },
+      "dist/ui.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 3,
+        "lineCount": 4
+      },
+      "dist/components/RecordingIndicator.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 45
+      },
+      "dist/components/VoiceProvider.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 16
+      },
+      "dist/components/RecordingIndicator.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 8
+      },
+      "dist/components/VoiceButton.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 92
+      },
+      "dist/components/VoiceButton.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 10
+      },
+      "dist/components/VoiceBubble.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 209
+      },
+      "dist/components/VoiceProvider.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 24
+      },
+      "dist/components/VoiceBubble.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 8
+      },
+      "dist/providers-expo-speech.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "dist/providers/llm/OpenAILLMProvider.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 35
+      },
+      "dist/providers/llm/OpenAILLMProvider.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 8
+      },
+      "dist/providers/llm/AnthropicLLMProvider.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 35
+      },
+      "dist/providers/llm/AnthropicLLMProvider.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 8
+      },
+      "dist/providers-anthropic.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 1,
+        "importCount": 1,
+        "lineCount": 2
+      },
+      "dist/providers/tts/ExpoSpeechTTSProvider.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 17
+      },
+      "dist/providers/tts/ExpoSpeechTTSProvider.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 6
+      },
+      "dist/hooks/useVoiceCommand.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 19
+      },
+      "dist/hooks/useAudioRecording.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 1,
+        "lineCount": 9
+      },
+      "dist/hooks/useVoiceCommand.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 2,
+        "lineCount": 96
+      },
+      "dist/hooks/useAudioRecording.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 84
+      },
+      "dist/hooks/useAudioPlayback.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 69
+      },
+      "dist/hooks/useAudioPlayback.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 2,
+        "importCount": 0,
+        "lineCount": 10
+      },
+      "dist/providers/stt/WhisperSTTProvider.d.ts": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 1,
+        "lineCount": 7
+      },
+      "dist/providers/stt/WhisperSTTProvider.js": {
+        "importDepth": 0,
+        "directUsageCount": 0,
+        "usageDepth": 0,
+        "folderCount": 3,
+        "importCount": 0,
+        "lineCount": 46
+      },
+      "example/.expo/types/router.d.ts": {
+        "importDepth": 1,
+        "directUsageCount": 4,
+        "usageDepth": 1,
+        "folderCount": 3,
+        "importCount": 0
+      }
+    }
+  }
+}
