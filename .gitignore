@@ -42,3 +42,6 @@ yarn-error.*
 /android
 example/ios
 example/android
+.remote-control
+progress.txt
+remotecontrol-todos.json

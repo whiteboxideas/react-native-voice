@@ -1,0 +1,3 @@
+# Rules
+
+Add project-specific rules and guidelines for AI task processing here.
